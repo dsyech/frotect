@@ -216,6 +216,7 @@ app.controller("myCtrl", function ($scope, $location, $http, $timeout) {
     $scope.lokasi = {
       witel: "Loading..",
       laporan: 0,
+      lokasi :0
     };
     $http
       .get(
