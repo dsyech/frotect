@@ -1,5 +1,6 @@
 var app = angular.module("myApp", []);
 app.controller("myCtrl", function ($scope, $location, $http, $timeout) {
+  $scope.plan;  
   $scope.isActivePath = function (path) {
     return $location.absUrl() != path;
   };

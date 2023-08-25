@@ -35,7 +35,6 @@
                   <th scope="col">Laporan</th>
                   <th scope="col">Foto</th>
                   <th scope="col">Lokasi</th>
-                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -47,9 +46,8 @@
                   <td>{{p.link_a}}</td>
                   <td>{{p.link_b}}</td>
                   <td>{{p.report}}</td>
-                  <td><img ng-src="{{ 'http://localhost/frotect/' + p.photo }}" alt="" srcset=""></td>
-                  <td></td>
-                  <td></td>
+                  <td><img ng-src="{{ 'http://10.16.110.100/frotect/' + p.photo }}" alt="" srcset="" height="100px"></td>
+                  <td><button class="btn btn-danger"><i class="fa-solid fa-location-pin"></i></button></td>
 
                 </tr>
               </tbody>
