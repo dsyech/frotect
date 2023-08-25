@@ -161,62 +161,54 @@ class DashboardController extends Controller {
         if ($method == 'chart_patroli') {
             $witel = ['ACEH', 'MEDAN', 'SUMUT', 'SUMBAR', 'RIDAR', 'RIKEP', 'JAMBI', 'BENGKULU', 'BABEL', 'SUMSEL', 'LAMPUNG'];
             $chart_patroli = [];
-
-            for ($i = 0; $i < count($witel); $i++) {
-                $planQuery = Plan::where('witel', $witel[$i])->where('activity', 'like', 'PATROLI%');
-                $actualQuery = Actual::join('plans', function ($join) {
-                    $join->on('plans.phone_number', '=', 'actuals.phone_number')
-                        ->on('plans.date', '=', 'actuals.date');
-                })->where('plans.witel', $witel[$i])->where('plans.activity', 'like', 'PATROLI%');
         
-                if ($start_date && $end_date) {
-                    $planQuery->whereBetween('date', [$start_date, $end_date]);
-                    $actualQuery->whereBetween('plans.date', [$start_date, $end_date]);
-                } else {
-                    $planQuery->whereDate('date', $today);
-                    $actualQuery->whereDate('plans.date', $today);
-                }
-        
-                $data_chart_plan_patroli = $planQuery->count();
-                $data_chart_actual_patroli = $actualQuery->count();
+            foreach ($witel as $w) {
+                $total_plan = Plan::
+                    where('witel', $w)
+                    ->where( 'activity', 'LIKE', '%PATROLI%' )
+                    ->whereBetween('date', [$start_date, $end_date])
+                    ->count();
 
+                $total_actual = Actual::join( 'plans', 'actuals.phone_number', '=', 'plans.phone_number' )
+                ->where('witel', $w)
+                ->where( 'plans.activity', 'LIKE', '%PATROLI%' )
+                ->whereColumn( 'plans.date', 'actuals.date' )
+                ->whereBetween( 'actuals.date', [ $start_date, $end_date ] )
+                ->count();
+        
                 $chart_patroli[] = [
-                    'witel' => $witel[$i],
-                    'plan' => $data_chart_plan_patroli,
-                    'actual' => $data_chart_actual_patroli
+                    'witel' => $w,
+                    'plan' => $total_plan,
+                    'actual' => $total_actual
                 ];
             }
             return response()->json($chart_patroli);    
         }
         if ($method == 'chart_wasman') {
             $witel = ['ACEH', 'MEDAN', 'SUMUT', 'SUMBAR', 'RIDAR', 'RIKEP', 'JAMBI', 'BENGKULU', 'BABEL', 'SUMSEL', 'LAMPUNG'];
-            $chart_wasman = [];
-
-            for ($i = 0; $i < count($witel); $i++) {
-                $planQuery = Plan::where('witel', $witel[$i])->where('activity', 'like', 'WASMAN%');
-                $actualQuery = Actual::join('plans', function ($join) {
-                    $join->on('plans.phone_number', '=', 'actuals.phone_number')
-                        ->on('plans.date', '=', 'actuals.date');
-                })->where('plans.witel', $witel[$i])->where('plans.activity', 'like', 'WASMAN%');
+            $chart_patroli = [];
         
-                if ($start_date && $end_date) {
-                    $planQuery->whereBetween('date', [$start_date, $end_date]);
-                    $actualQuery->whereBetween('plans.date', [$start_date, $end_date]);
-                } else {
-                    $planQuery->whereDate('date', $today);
-                    $actualQuery->whereDate('plans.date', $today);
-                }
-        
-                $data_chart_plan_wasman = $planQuery->count();
-                $data_chart_actual_wasman = $actualQuery->count();
+            foreach ($witel as $w) {
+                $total_plan = Plan::
+                    where('witel', $w)
+                    ->where( 'activity', 'LIKE', '%WASMAN%' )
+                    ->whereBetween('date', [$start_date, $end_date])
+                    ->count();
 
-                $chart_wasman[] = [
-                    'witel' => $witel[$i],
-                    'plan' => $data_chart_plan_wasman,
-                    'actual' => $data_chart_actual_wasman
+                $total_actual = Actual::join( 'plans', 'actuals.phone_number', '=', 'plans.phone_number' )
+                ->where('witel', $w)
+                ->where( 'plans.activity', 'LIKE', '%WASMAN%' )
+                ->whereColumn( 'plans.date', 'actuals.date' )
+                ->whereBetween( 'actuals.date', [ $start_date, $end_date ] )
+                ->count();
+        
+                $chart_patroli[] = [
+                    'witel' => $w,
+                    'plan' => $total_plan,
+                    'actual' => $total_actual
                 ];
-            }  
-            return response()->json($chart_wasman);    
+            }
+            return response()->json($chart_patroli);    
         }
         
         
