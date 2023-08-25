@@ -1,7 +1,7 @@
 var app = angular.module("myApp", []);
 app.controller("myCtrl", function ($scope, $location, $http, $timeout) {
   $scope.isActivePath = function (path) {
-    return $location.path() === path;
+    return $location.absUrl() != path;
   };
 
   function formatDate(date) {
