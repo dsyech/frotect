@@ -30,8 +30,9 @@
                 <i class="bi bi-cone-striped"></i>
               </div>
               <div class="ps-3">
-                <h6>96.5%</h6>
-                <p class="text-muted small pt-2 ps-1"> 100 Actual / 145 Plan</p>
+                <h6>{{ countPatroli.persen | number:2 }}</h6>
+                <p class="text-muted small pt-2 ps-1"> {{countPatroli.total_actual_patroli}} Actual /
+                  {{countPatroli.total_plan_patroli}} Plan</p>
 
               </div>
             </div>
@@ -49,8 +50,9 @@
                 <i class="bi bi-cone-striped"></i>
               </div>
               <div class="ps-3">
-                <h6>96.5%</h6>
-                <p class="text-muted small pt-2 ps-1"> 100 Actual / 145 Plan</p>
+                <h6>{{ countWasman.persen | number:2 }}</h6>
+                <p class="text-muted small pt-2 ps-1"> {{countWasman.total_actual_wasman}} Actual /
+                  {{countWasman.total_plan_wasman}} Plan</p>
 
               </div>
             </div>
@@ -68,8 +70,8 @@
                 <i class="bi bi-cone-striped"></i>
               </div>
               <div class="ps-3">
-                <h6>96.5%</h6>
-                <p class="text-muted small pt-2 ps-1"> 100 Actual / 145 Plan</p>
+                <h6>0</h6>
+                <p class="text-muted small pt-2 ps-1"> 0</p>
 
               </div>
             </div>
@@ -87,8 +89,8 @@
                 <i class="bi bi-cone-striped"></i>
               </div>
               <div class="ps-3">
-                <h6>96.5%</h6>
-                <p class="text-muted small pt-2 ps-1"> 100 Actual / 145 Plan</p>
+                <h6>0</h6>
+                <p class="text-muted small pt-2 ps-1"> 0</p>
 
               </div>
             </div>
@@ -103,11 +105,20 @@
       <div class="col-12 col-lg-9">
         <div class="row">
           <!-- Reports -->
-          <div class="col-12">
+          <div class="col-12 col-lg-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Laporan Patroli & Wasman</h5>
-                <!-- Kode Chart -->
+                <h5 class="card-title">Laporan Patroli</h5>
+                <div id="patroliChart"></div>
+              </div>
+
+            </div>
+          </div><!-- End Reports -->
+          <div class="col-12 col-lg-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Laporan Wasman</h5>
+                <div id="wasmanChart"></div>
               </div>
 
             </div>
@@ -121,7 +132,23 @@
         <!-- Recent Activity -->
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Konsistensi Patroli & Wasman</h5>
+            <h5 class="card-title">Konsistensi Laporan</h5>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Witel</th>
+                  <th scope="col">Laporan</th>
+                  <th scope="col">Lokasi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="l in laporan">
+                  <th scope="row">{{l.witel}}</th>
+                  <td>{{l.laporan | number:2}}</td>
+                  <td>{{l.lokasi | number:2}}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div><!-- End Recent Activity -->
       </div><!-- End Right side columns -->
@@ -135,5 +162,5 @@
     class="bi bi-arrow-up-short"></i></a>
 @endsection
 @section('js')
-<script src="resources/js/home.js"></script>
+<script src="resources/js/dashboard.js"></script>
 @endsection

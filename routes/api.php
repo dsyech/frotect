@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\DashboardController;
+use App\Http\Controllers\api\WasmanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/dashboard', [DashboardController::class, 'index']);
+
+// Route::get('/wasman', [WasmanController::class, 'index']);
+// Route::get('/api-key', function () {
+//     return response()->json(['api_key' => env('API_KEY')]);
+// });
