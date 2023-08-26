@@ -11,38 +11,18 @@ use Illuminate\Support\Facades\DB;
 
 class PlanController extends Controller {
     public function index(Request $request) {
-        $start_date = $request->input('start_date');
-        $end_date = $request->input('end_date');
-    
-        $plans = Plan::whereBetween('date', [$start_date, $end_date])
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        $plans = Plan::select('plans.*', 'actuals.id AS id_actual', 'actuals.phone_number AS phone_number_actual')
+            ->leftJoin('actuals', function ($join) {
+                $join->on('plans.phone_number', '=', 'actuals.phone_number')
+                    ->on('plans.date', '=', 'actuals.date');
+            })
+            ->whereBetween('plans.date', [$request->input('start_date'), $request->input('end_date')])
             ->orderBy('witel', 'asc')
             ->get();
-    
-        $plansWithActuals = $plans->map(function ($plan) use ($start_date, $end_date) {
-            $actuals = Actual::whereBetween('date', [$start_date, $end_date])
-                ->where('phone_number', $plan->phone_number)
-                ->get();
-    
-            if ($actuals->isEmpty()) {
-                $actualData = [
-                    'id' => null,
-                    'id_telegram' => null,
-                    'phone_number' => null,
-                    'report' => null,
-                    'photo' => null,
-                    'date' => null,
-                    'created_at' => null,
-                    'updated_at' => null,
-                ];
-            } else {
-                $actualData = $actuals->first()->toArray();
-            }
-    
-            return array_merge($plan->toArray(), $actualData);
-        });
-    
-        return response()->json($plansWithActuals);
-    }
-    
 
+        return response()->json($plans);
+
+    }
 }
