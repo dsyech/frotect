@@ -44,7 +44,12 @@ app.controller("myCtrl", function ($scope, $location, $http, $timeout) {
 
   $scope.changePage = function (page) {
     $scope.currentPage = page;
-    getData($scope.start_date, $scope.start_date, page);
+    if($scope.start_date){
+      getData($scope.start_date, $scope.start_date, page);
+    }
+    else {
+      getData(today, today, page);
+    }
 };
 
   $scope.search = function () {
