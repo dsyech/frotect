@@ -22,6 +22,7 @@ app.controller("myCtrl", function ($scope, $location, $http, $timeout) {
   }
 
   function getData(date1, date2, page) {
+    $scope.plan=[];
     $http
       .get(
         "api/plan?start_date=" +
@@ -31,6 +32,8 @@ app.controller("myCtrl", function ($scope, $location, $http, $timeout) {
       )
       .then(function (response) {
         $scope.plan = response.data.data;
+        $scope.totalPages = response.data.last_page;
+        console.log( $scope.totalPages);
       });
   }
 
@@ -52,18 +55,5 @@ app.controller("myCtrl", function ($scope, $location, $http, $timeout) {
     $scope.end_date = formatDate(new Date($scope.end_date));
     getData($scope.start_date, $scope.end_date, 1);
   };
-
-//   $scope.locationAvailable = function(phoneNumber) {
-//     return $http.get("api/location?phone_number=" + phoneNumber)
-//         .then(function(response) {
-//             // Di sini Anda dapat mengatur kondisi berdasarkan respons
-//             // Misalnya, jika lokasi ditemukan, respons akan mengandung data, dan sebaliknya
-//             return response.data; // Mengembalikan data atau null jika tidak ditemukan
-//         })
-//         .catch(function(error) {
-//             console.error("Terjadi kesalahan:", error);
-//             return null; // Mengembalikan null jika terjadi kesalahan
-//         });
-// };
   
 });
