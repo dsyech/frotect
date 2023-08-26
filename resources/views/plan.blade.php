@@ -20,6 +20,37 @@
 
   <section class="section dashboard">
     <div class="row">
+      <div class="card">
+        <div class="card-header">Upload Plan</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3">
+              <select class="form-select" aria-label="Default select example" ng-change="witel()" ng-model="selectedWitel">
+                <option value="" selected="">TREG1 - Pilih Witel</option>
+                <option value="Aceh">Aceh</option>
+                <option value="Medan">Medan</option>
+                <option value="Sumut">Sumut</option>
+                <option value="Sumbar">Sumbar</option>
+                <option value="Ridar">Ridar</option>
+                <option value="Rikep">Rikep</option>
+                <option value="Jambi">Jambi</option>
+                <option value="Bengkulu">Bengkulu</option>
+                <option value="Babel">Babel</option>
+                <option value="Sumsel">Sumsel</option>
+                <option value="Lampung">Lampung</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <input class="form-control" type="file" id="formFile">
+            </div>
+            <div class="col-3">
+              <button class="btn btn-success">Upload Excel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
         <div class="card">
           <div class="card-header">Plan Patroli & Wasman</div>
           <div class="card-body">

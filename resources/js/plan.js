@@ -9,6 +9,7 @@ app.controller("myCtrl", function ($scope, $location, $http, $timeout) {
   $scope.pages = [];
   $scope.start_date;
   $scope.end_date;
+  $scope.selectedWitel="";
 
   $scope.isActivePath = function (path) {
     return $location.absUrl() != path;
@@ -21,9 +22,26 @@ app.controller("myCtrl", function ($scope, $location, $http, $timeout) {
     return year + "-" + month + "-" + day;
   }
 
-  function getData(date1, date2, page) {
+  function getData(date1, date2, witel, page) {
     $scope.plan=[];
-    $http
+
+    if(witel!=""){
+      $http
+      .get(
+        "api/plan?start_date=" +
+          date1 +
+          "&end_date=" +
+          date2+"&witel="+witel+"&page="+page
+      )
+      .then(function (response) {
+        $scope.plan = response.data.data;
+        console.log($scope.plan);
+        $scope.totalPages = response.data.last_page;
+        console.log( $scope.totalPages);
+      });
+    }
+    else {
+      $http
       .get(
         "api/plan?start_date=" +
           date1 +
@@ -32,28 +50,38 @@ app.controller("myCtrl", function ($scope, $location, $http, $timeout) {
       )
       .then(function (response) {
         $scope.plan = response.data.data;
+        console.log($scope.plan);
         $scope.totalPages = response.data.last_page;
         console.log( $scope.totalPages);
       });
+    }
+
   }
 
   var today = formatDate(new Date());
-  getData(today, today, 1);
+  getData(today, today, $scope.selectedWitel, 1);
 
   $scope.changePage = function (page) {
     $scope.currentPage = page;
     if($scope.start_date){
-      getData($scope.start_date, $scope.start_date, page);
+      getData($scope.start_date, $scope.start_date, $scope.selectedWitel, page);
     }
     else {
-      getData(today, today, page);
+      getData(today, today, $scope.selectedWitel, page);
     }
 };
 
   $scope.search = function () {
     $scope.start_date = formatDate(new Date($scope.start_date));
     $scope.end_date = formatDate(new Date($scope.end_date));
-    getData($scope.start_date, $scope.end_date, 1);
+    getData($scope.start_date, $scope.end_date, $scope.selectedWitel, 1);
   };
+
+  $scope.witel = function() {
+    // Di sini Anda bisa mengakses nilai terpilih dengan $scope.selectedWitel
+    console.log('Witel terpilih:', $scope.selectedWitel);
+    getData( $scope.start_date,  $scope.end_date, $scope.selectedWitel, 1);
+    // Lakukan tindakan atau perubahan sesuai dengan nilai terpilih
+};
   
 });
