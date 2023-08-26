@@ -13,6 +13,8 @@ class PlanController extends Controller {
     public function index(Request $request) {
         $start_date = $request->start_date;
         $end_date = $request->end_date;
+        $page = $request->input('page', 1); // Jika 'page' tidak ada dalam URL, akan diatur ke halaman 1
+    
         $plans = Plan::select('plans.*', 'actuals.id AS id_actual', 'actuals.phone_number AS phone_number_actual', 'actuals.photo')
             ->leftJoin('actuals', function ($join) {
                 $join->on('plans.phone_number', '=', 'actuals.phone_number')
@@ -20,9 +22,14 @@ class PlanController extends Controller {
             })
             ->whereBetween('plans.date', [$request->input('start_date'), $request->input('end_date')])
             ->orderBy('witel', 'asc')
-            ->get();
-
-        return response()->json($plans);
-
+            ->paginate(10); // Menggunakan paginasi dengan 10 item per halaman
+    
+        return response()->json([
+            'data' => $plans->items(),
+            'current_page' => $plans->currentPage(),
+            'last_page' => $plans->lastPage(),
+            'total' => $plans->total(),
+        ]);      
     }
+    
 }

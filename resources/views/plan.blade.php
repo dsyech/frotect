@@ -46,12 +46,31 @@
                   <td>{{p.link_a}}</td>
                   <td>{{p.link_b}}</td>
                   <td>{{p.report}}</td>
-                  <td><img ng-src="{{ 'http://10.16.110.100/frotect/' + p.photo }}" alt="" srcset="" height="100px"></td>
+                  <td><img ng-src="{{ 'http://10.16.110.100/frotect/' + p.photo }}" alt="" height="100px"></td>
                   <td><button class="btn btn-danger"><i class="fa-solid fa-location-pin"></i></button></td>
 
                 </tr>
               </tbody>
             </table>
+            <nav aria-label="Page navigation">
+              <ul class="pagination justify-content-center">
+                  <li class="page-item" ng-class="{disabled: currentPage === 1}">
+                      <a class="page-link" href="#" ng-click="changePage(1)">First</a>
+                  </li>
+                  <li class="page-item" ng-class="{disabled: currentPage === 1}">
+                      <a class="page-link" href="#" ng-click="changePage(currentPage - 1)">Previous</a>
+                  </li>
+                  <li class="page-item" ng-repeat="page in pages track by $index" ng-class="{active: currentPage === page}">
+                      <a class="page-link" href="#" ng-click="changePage(page)">{{ page }}</a>
+                  </li>
+                  <li class="page-item" ng-class="{disabled: currentPage === totalPages}">
+                      <a class="page-link" href="#" ng-click="changePage(currentPage + 1)">Next</a>
+                  </li>
+                  <li class="page-item" ng-class="{disabled: currentPage === totalPages}">
+                      <a class="page-link" href="#" ng-click="changePage(totalPages)">Last</a>
+                  </li>
+              </ul>
+          </nav>
           </div>
         </div>
     </div>

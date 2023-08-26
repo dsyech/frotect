@@ -23,10 +23,12 @@
   <link href="resources/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="resources/assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
   <!-- Template Main CSS File -->
   <link href="resources/assets/css/style.css" rel="stylesheet">
     @yield('head')
+    <script>
+      var BASE_URL = '{{ url("/") }}';
+    </script>
 </head>
 
 <body ng-app="myApp" ng-controller="myCtrl">
@@ -46,9 +48,6 @@
  <!-- Template Main JS File -->
  <script src="resources/assets/js/main.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
- <script>
-  var BASE_URL = '{{ url("/") }}';
-</script>
 @yield('js')
 
 </html>
