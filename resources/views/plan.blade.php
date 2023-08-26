@@ -46,8 +46,15 @@
                   <td>{{p.link_a}}</td>
                   <td>{{p.link_b}}</td>
                   <td>{{p.report}}</td>
-                  <td><img ng-src="{{ 'http://10.16.110.100/frotect/' + p.photo }}" alt="" height="100px"></td>
-                  <td><button class="btn btn-danger"><i class="fa-solid fa-location-pin"></i></button></td>
+                 <!-- <td><img ng-src="{{ 'http://10.16.110.100/frotect/' + p.photo }}" alt="" height="100px"></td> -->
+                   <td>
+                    <button class="btn btn-small btn-danger" ng-if="p.has_location">
+                        <i class="fa-solid fa-location-pin"></i>
+                    </button>
+                    <button class="btn btn-small" ng-if="!p.has_location" disabled style="background-color: #e9ecef;">
+                        <i class="fa-solid fa-location-pin"></i>
+                    </button>
+                </td>
 
                 </tr>
               </tbody>
@@ -69,6 +76,9 @@
                   <li class="page-item" ng-class="{disabled: currentPage === totalPages}">
                       <a class="page-link" href="#" ng-click="changePage(totalPages)">Last</a>
                   </li>
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" ng-click="changePage(totalPages)">Page {{currentPage}}</a>
+                </li>
               </ul>
           </nav>
           </div>

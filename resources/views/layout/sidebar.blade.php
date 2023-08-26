@@ -84,7 +84,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link" ng-class="{ 'collapsed': isActivePath('/') }" ng-href="{{ BASE_URL }}">
+        <a class="nav-link" ng-class="{ 'collapsed': isActivePath('http://localhost/frotect/') }" href="http://localhost/frotect/">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
