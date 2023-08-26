@@ -13,7 +13,7 @@ class PlanController extends Controller {
     public function index(Request $request) {
         $start_date = $request->start_date;
         $end_date = $request->end_date;
-        $plans = Plan::select('plans.*', 'actuals.id AS id_actual', 'actuals.phone_number AS phone_number_actual')
+        $plans = Plan::select('plans.*', 'actuals.id AS id_actual', 'actuals.phone_number AS phone_number_actual', 'actuals.photo')
             ->leftJoin('actuals', function ($join) {
                 $join->on('plans.phone_number', '=', 'actuals.phone_number')
                     ->on('plans.date', '=', 'actuals.date');
