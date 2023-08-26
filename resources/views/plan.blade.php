@@ -65,20 +65,21 @@
                       <a class="page-link" href="#" ng-click="changePage(1)">First</a>
                   </li>
                   <li class="page-item" ng-class="{disabled: currentPage === 1}">
-                      <a class="page-link" href="#" ng-click="changePage(currentPage - 1)">Previous</a>
-                  </li>
-                  <li class="page-item" ng-repeat="page in pages track by $index" ng-class="{active: currentPage === page}">
-                      <a class="page-link" href="#" ng-click="changePage(page)">{{ page }}</a>
-                  </li>
-                  <li class="page-item" ng-class="{disabled: currentPage === totalPages}">
-                      <a class="page-link" href="#" ng-click="changePage(currentPage + 1)">Next</a>
-                  </li>
-                  <li class="page-item" ng-class="{disabled: currentPage === totalPages}">
-                      <a class="page-link" href="#" ng-click="changePage(totalPages)">Last</a>
+                      <a class="page-link" href="#" ng-click="changePage(currentPage - 1)">Previous ({{currentPage - 1}})</a>
                   </li>
                   <li class="page-item disabled">
                     <a class="page-link" href="#" ng-click="changePage(totalPages)">Page {{currentPage}}</a>
                 </li>
+                  <li class="page-item" ng-repeat="page in pages track by $index" ng-class="{active: currentPage === page}">
+                      <a class="page-link" href="#" ng-click="changePage(page)">{{ page }}</a>
+                  </li>
+                  <li class="page-item" ng-class="{disabled: currentPage === totalPages}">
+                      <a class="page-link" href="#" ng-click="changePage(currentPage + 1)">Next ({{currentPage + 1}})</a>
+                  </li>
+                  <li class="page-item" ng-class="{disabled: currentPage === totalPages}">
+                      <a class="page-link" href="#" ng-click="changePage(totalPages)">Last ({{totalPages}})</a>
+                  </li>
+
               </ul>
           </nav>
           </div>
