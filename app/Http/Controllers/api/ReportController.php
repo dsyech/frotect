@@ -8,7 +8,7 @@ use App\Models\Actual;
 use App\Models\Location;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller {
+class ReportController extends Controller {
     public function index( Request $request ) {
         $start_date = $request->input( 'start_date' );
         $end_date = $request->input( 'end_date' );

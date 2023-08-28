@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\api\DashboardController;
+use App\Http\Controllers\api\ReportController;
 use App\Http\Controllers\api\PlanController;
 use App\Http\Controllers\api\LocationController;
 
@@ -17,7 +17,7 @@ use App\Http\Controllers\api\LocationController;
 |
 */
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/report', [ReportController::class, 'index']);
 Route::get('/plan', [PlanController::class, 'index']);
 Route::get('/location', [LocationController::class, 'index']);
 

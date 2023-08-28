@@ -22,9 +22,8 @@ app.controller("myCtrl", function ($scope, $location, $http, $timeout) {
   function getData(date1, date2) {
     console.log(date1);
     console.log(date2);
-    // api/dashboard?start_date=2023-08-24&end_date=2023-08-24
     $http
-      .get("api/dashboard?start_date=" + date1 + "&end_date=" + date2)
+      .get("api/report?start_date=" + date1 + "&end_date=" + date2)
       .then(function (response) {
         $scope.super = response.data;
         for (var i = 0; i < $scope.super.length; i++) {
