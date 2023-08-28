@@ -30,9 +30,9 @@
                 <i class="bi bi-cone-striped"></i>
               </div>
               <div class="ps-3">
-                <h6>{{ countPatroli.persen | number:2 }}</h6>
-                <p class="text-muted small pt-2 ps-1"> {{countPatroli.total_actual_patroli}} Actual /
-                  {{countPatroli.total_plan_patroli}} Plan</p>
+                <h6>{{ persen_patroli | number:2 }}</h6>
+                <p class="text-muted small pt-2 ps-1"> {{total_actual_patroli}} Actual /
+                  {{total_plan_patroli}} Plan</p>
 
               </div>
             </div>
@@ -50,9 +50,9 @@
                 <i class="bi bi-cone-striped"></i>
               </div>
               <div class="ps-3">
-                <h6>{{ countWasman.persen | number:2 }}</h6>
-                <p class="text-muted small pt-2 ps-1"> {{countWasman.total_actual_wasman}} Actual /
-                  {{countWasman.total_plan_wasman}} Plan</p>
+                <h6>{{ persen_wasman| number:2 }}</h6>
+                <p class="text-muted small pt-2 ps-1"> {{total_actual_wasman}} Actual /
+                  {{total_plan_wasman}} Plan</p>
 
               </div>
             </div>
@@ -142,10 +142,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="l in laporan">
-                  <th scope="row">{{l.witel}}</th>
-                  <td>{{l.laporan | number:2}}</td>
-                  <td>{{l.lokasi | number:2}}</td>
+                <tr ng-repeat="s in super">
+                  <th scope="row">{{s.witel}}</th>
+                  <td>{{s.laporan | number:2}}</td>
+                  <td>{{s.lokasi | number:2}}</td>
                 </tr>
               </tbody>
             </table>
