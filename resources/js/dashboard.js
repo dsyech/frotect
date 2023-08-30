@@ -1,5 +1,6 @@
 var app = angular.module("myApp", []);
-app.controller("myCtrl", function ($scope, $location, $http, $timeout) {
+app.controller("myCtrl", function ($scope, $location, $http) {
+  $scope.loading=false;
   $scope.super = [];
   $scope.total_plan_patroli = 0;
   $scope.total_plan_wasman = 0;
@@ -20,11 +21,13 @@ app.controller("myCtrl", function ($scope, $location, $http, $timeout) {
   }
 
   function getData(date1, date2) {
+    $scope.loading=false;
     console.log(date1);
     console.log(date2);
     $http
       .get("api/report?start_date=" + date1 + "&end_date=" + date2)
       .then(function (response) {
+        $scope.loading=true;
         $scope.super = response.data;
         for (var i = 0; i < $scope.super.length; i++) {
           console.log($scope.super[i].witel);

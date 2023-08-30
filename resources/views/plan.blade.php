@@ -54,6 +54,9 @@
       </div>
     </div>
     <div class="row">
+      <div class="alert alert-warning" ng-hide="loading">Loading please wait</div>
+    </div>
+    <div class="row">
         <div class="card">
           <div class="card-header">Plan Patroli & Wasman</div>
           <div class="card-body">

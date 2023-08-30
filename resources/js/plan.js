@@ -7,6 +7,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
     return year + "-" + month + "-" + day;
   }
 
+  $scope.loading=false;
   $scope.plan;
   $scope.currentPage = 1;
   $scope.pageSize = 10; // Jumlah item per halaman
@@ -37,7 +38,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
         transformRequest: angular.identity
       })
       .then(function (response) {
-        // Berhasil, lakukan sesuatu
+        $scope.loading=true;
         console.log("Upload berhasil:", response.data);
       })
       .catch(function (error) {
@@ -51,6 +52,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
   };
 
   function getData(date1, date2, witel, page) {
+    $scope.loading=false;
     $scope.plan = [];
     console.log(date1);
     console.log(date2);
@@ -70,6 +72,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
             page
         )
         .then(function (response) {
+          $scope.loading=true;
           $scope.plan = response.data.data;
           console.log($scope.plan);
           $scope.totalPages = response.data.last_page;
@@ -86,6 +89,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
             page
         )
         .then(function (response) {
+          $scope.loading=true;
           $scope.plan = response.data.data;
           console.log($scope.plan);
           $scope.totalPages = response.data.last_page;
@@ -137,19 +141,3 @@ app.directive("fileModel", [
     };
   },
 ]);
-
-// app.service('fileUpload', ['$http', function ($http) {
-//   this.uploadFileToUrl = function(file, uploadUrl) {
-//      var fd = new FormData();
-//      fd.append('file', file);
-
-//      $http:.post(uploadUrl, fd, {
-//         transformRequest: angular.identity,
-//         headers: {'Content-Type': undefined}
-//      })
-//      .success(function() {
-//      })
-//      .error(function() {
-//      });
-//   }
-// }]);

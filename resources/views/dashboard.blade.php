@@ -100,7 +100,9 @@
       </div>
     </div>
     <div class="row">
-
+      <div class="alert alert-warning" ng-hide="loading">Loading please wait</div>
+    </div>
+    <div class="row">
       <!-- Left side columns -->
       <div class="col-12 col-lg-9">
         <div class="row">
