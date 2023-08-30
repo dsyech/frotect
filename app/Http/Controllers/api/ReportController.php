@@ -13,75 +13,110 @@ class ReportController extends Controller {
     public function index( Request $request ) {
         $start_date = $request->input( 'start_date' );
         $end_date = $request->input( 'end_date' );
+        $data = $request->input( 'data' );
 
-        $witel = ['ACEH', 'MEDAN', 'SUMUT', 'SUMBAR', 'RIDAR', 'RIKEP', 'JAMBI', 'BENGKULU', 'BABEL', 'SUMSEL', 'LAMPUNG'];        
-        foreach ($witel as $w) {
-            $total_plan_patroli = Plan::where('witel', $w)
-                ->where( 'activity', 'LIKE', '%PATROLI%' )
-                ->whereBetween('date', [$start_date, $end_date])
-                ->count();
-            
-            $total_plan_wasman = Plan::where('witel', $w)
-                ->where( 'activity', 'LIKE', '%WASMAN%' )
-                ->whereBetween('date', [$start_date, $end_date])
-                ->count();
-    
-            $total_actual_patroli = Actual::join('plans', function ($join) use ($w) {
-                $join->on('actuals.phone_number', '=', 'plans.phone_number')
-                    ->where('plans.witel', $w)
-                    ->where( 'plans.activity', 'LIKE', '%PATROLI%' )
-                    ->whereColumn('plans.date', 'actuals.date');
-            })
-            ->whereBetween('actuals.date', [$start_date, $end_date])
+        if($data == 'all'){
+            $laporan = [];
+            $total_plan_patroli = Plan::where( 'activity', 'LIKE', '%PATROLI%' )
+            ->whereBetween('date', [$start_date, $end_date])
             ->count();
 
-            $total_actual_wasman = Actual::join('plans', function ($join) use ($w) {
-                $join->on('actuals.phone_number', '=', 'plans.phone_number')
-                    ->where('plans.witel', $w)
-                    ->where( 'plans.activity', 'LIKE', '%WASMAN%' )
-                    ->whereColumn('plans.date', 'actuals.date');
-            })
-            ->whereBetween('actuals.date', [$start_date, $end_date])
+            $total_plan_wasman = Plan::where( 'activity', 'LIKE', '%WASMAN%' )
+            ->whereBetween('date', [$start_date, $end_date])
             ->count();
 
-            $unique_data = Location::whereBetween('date', [$start_date, $end_date])
-            ->distinct('id_telegram')
-            ->pluck('id_telegram');
+            $total_actual_patroli = Actual::join('plans', 'actuals.phone_number', '=', 'plans.phone_number')
+            ->whereBetween('actuals.date', [$start_date, $end_date])
+            ->whereColumn('plans.date', 'actuals.date')
+            ->where('plans.activity', 'LIKE', '%PATROLI%')
+            ->count();
+        
 
-            $matching_phone_numbers = Actual::whereIn('id_telegram', $unique_data)
-            ->whereBetween('date', [$start_date, $end_date])
-            ->pluck('phone_number');
+            $total_actual_wasman = Actual::join('plans', 'actuals.phone_number', '=', 'plans.phone_number')
+            ->whereBetween('actuals.date', [$start_date, $end_date])
+            ->whereColumn('plans.date', 'actuals.date')
+            ->where('plans.activity', 'LIKE', '%WASMAN%')
+            ->count();
 
-            $total_location = Plan::whereIn('phone_number', $matching_phone_numbers)
-            ->whereBetween('date', [$start_date, $end_date])
-            ->where('witel', $w)
-            ->pluck('witel')->count();
+            $laporan = [
+                "total_plan_patroli" => $total_plan_patroli,
+                "total_plan_wasman" => $total_plan_wasman,
+                "total_actual_patroli" => $total_actual_patroli,
+                "total_actual_wasman" => $total_actual_wasman
+            ];
 
-    
-            if (($total_plan_patroli+$total_plan_wasman) > 0) {
-                $laporan[] = [
-                    'witel' => $w,
-                    'plan_patroli' => $total_plan_patroli,
-                    'plan_wasman' => $total_plan_wasman,
-                    'actual_patroli'=> $total_actual_patroli,
-                    'actual_wasman' => $total_actual_wasman,
-                    'laporan' => (($total_actual_patroli+$total_actual_wasman) / ($total_plan_patroli+$total_plan_wasman)) * 100,
-                    'lokasi' => ($total_location / ($total_plan_patroli+$total_plan_wasman)) * 100
-                ];
-            } else {
-                $laporan[] = [
-                    'witel' => $w,
-                    'plan_patroli' => $total_plan_patroli,
-                    'plan_wasman' => $total_plan_wasman,
-                    'actual_patroli'=> $total_actual_patroli,
-                    'actual_wasman' => $total_actual_wasman,
-                    'laporan' => 0,
-                    'lokasi' => 0
-                ];
-            }
+            return response()->json($laporan);
+
         }
+        else {
+            $witel = ['ACEH', 'MEDAN', 'SUMUT', 'SUMBAR', 'RIDAR', 'RIKEP', 'JAMBI', 'BENGKULU', 'BABEL', 'SUMSEL', 'LAMPUNG'];        
+            foreach ($witel as $w) {
+                $total_plan_patroli = Plan::where('witel', $w)
+                    ->where( 'activity', 'LIKE', '%PATROLI%' )
+                    ->whereBetween('date', [$start_date, $end_date])
+                    ->count();
+                
+                $total_plan_wasman = Plan::where('witel', $w)
+                    ->where( 'activity', 'LIKE', '%WASMAN%' )
+                    ->whereBetween('date', [$start_date, $end_date])
+                    ->count();
+        
+                $total_actual_patroli = Actual::join('plans', function ($join) use ($w) {
+                    $join->on('actuals.phone_number', '=', 'plans.phone_number')
+                        ->where('plans.witel', $w)
+                        ->where( 'plans.activity', 'LIKE', '%PATROLI%' )
+                        ->whereColumn('plans.date', 'actuals.date');
+                })
+                ->whereBetween('actuals.date', [$start_date, $end_date])
+                ->count();
     
-        return response()->json($laporan);
+                $total_actual_wasman = Actual::join('plans', function ($join) use ($w) {
+                    $join->on('actuals.phone_number', '=', 'plans.phone_number')
+                        ->where('plans.witel', $w)
+                        ->where( 'plans.activity', 'LIKE', '%WASMAN%' )
+                        ->whereColumn('plans.date', 'actuals.date');
+                })
+                ->whereBetween('actuals.date', [$start_date, $end_date])
+                ->count();
+    
+                $unique_data = Location::whereBetween('date', [$start_date, $end_date])
+                ->distinct('id_telegram')
+                ->pluck('id_telegram');
+    
+                $matching_phone_numbers = Actual::whereIn('id_telegram', $unique_data)
+                ->whereBetween('date', [$start_date, $end_date])
+                ->pluck('phone_number');
+    
+                $total_location = Plan::whereIn('phone_number', $matching_phone_numbers)
+                ->whereBetween('date', [$start_date, $end_date])
+                ->where('witel', $w)
+                ->pluck('witel')->count();
+    
+        
+                if (($total_plan_patroli+$total_plan_wasman) > 0) {
+                    $laporan[] = [
+                        'witel' => $w,
+                        'plan_patroli' => $total_plan_patroli,
+                        'plan_wasman' => $total_plan_wasman,
+                        'actual_patroli'=> $total_actual_patroli,
+                        'actual_wasman' => $total_actual_wasman,
+                        'laporan' => (($total_actual_patroli+$total_actual_wasman) / ($total_plan_patroli+$total_plan_wasman)) * 100,
+                        'lokasi' => ($total_location / ($total_plan_patroli+$total_plan_wasman)) * 100
+                    ];
+                } else {
+                    $laporan[] = [
+                        'witel' => $w,
+                        'plan_patroli' => $total_plan_patroli,
+                        'plan_wasman' => $total_plan_wasman,
+                        'actual_patroli'=> $total_actual_patroli,
+                        'actual_wasman' => $total_actual_wasman,
+                        'laporan' => 0,
+                        'lokasi' => 0
+                    ];
+                }
+            }
+            return response()->json($laporan);
+        }
     }
 
 }

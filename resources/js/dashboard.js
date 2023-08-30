@@ -1,6 +1,6 @@
 var app = angular.module("myApp", []);
 app.controller("myCtrl", function ($scope, $location, $http) {
-  $scope.loading=false;
+  $scope.loading = false;
   $scope.super = [];
   $scope.total_plan_patroli = 0;
   $scope.total_plan_wasman = 0;
@@ -21,43 +21,40 @@ app.controller("myCtrl", function ($scope, $location, $http) {
   }
 
   function getData(date1, date2) {
-    $scope.loading=false;
+    $scope.loading = false;
     console.log(date1);
     console.log(date2);
+
     $http
-      .get("api/report?start_date=" + date1 + "&end_date=" + date2)
+      .get("api/report?data=all&start_date=" + date1 + "&end_date=" + date2)
       .then(function (response) {
-        $scope.loading=true;
-        $scope.super = response.data;
-        for (var i = 0; i < $scope.super.length; i++) {
-          console.log($scope.super[i].witel);
-          $scope.total_plan_patroli =
-            $scope.total_plan_patroli + $scope.super[i].plan_patroli;
-          $scope.total_plan_wasman =
-            $scope.total_plan_wasman + $scope.super[i].plan_wasman;
-          $scope.total_actual_patroli =
-            $scope.total_actual_patroli + $scope.super[i].actual_patroli;
-          $scope.total_actual_wasman =
-            $scope.total_actual_wasman + $scope.super[i].actual_wasman;
-        }
+        console.log(response.data);
+        $scope.total_plan_patroli = response.data.total_plan_patroli;
+        $scope.total_plan_wasman = response.data.total_plan_wasman;
+        $scope.total_actual_patroli = response.data.total_actual_wasman;
+        $scope.total_actual_wasman = response.data.total_actual_wasman;
         $scope.persen_patroli =
           ($scope.total_actual_patroli * 100) / $scope.total_plan_patroli;
         $scope.persen_wasman =
           ($scope.total_actual_wasman * 100) / $scope.total_plan_wasman;
-        
-        if($scope.persen_patroli>0){
+
+        if ($scope.persen_patroli > 0) {
           $scope.persen_patroli = $scope.persen_patroli;
-        }
-        else{
-          $scope.persen_patroli=0;
+        } else {
+          $scope.persen_patroli = 0;
         }
 
-        if($scope.persen_wasman>0){
+        if ($scope.persen_wasman > 0) {
           $scope.persen_wasman = $scope.persen_wasman;
+        } else {
+          $scope.persen_wasman = 0;
         }
-        else{
-          $scope.persen_wasman=0;
-        }
+      });
+    $http
+      .get("api/report?start_date=" + date1 + "&end_date=" + date2)
+      .then(function (response) {
+        $scope.loading = true;
+        $scope.super = response.data;
         //chart patroli
         var options = {
           series: [],
