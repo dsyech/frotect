@@ -40,11 +40,14 @@
                 <option value="Lampung">Lampung</option>
               </select>
             </div>
-            <div class="col-6">
-              <input class="form-control" type="file" id="formFile">
+            <div class="col-3">
+              <input class="form-control" type="date" ng-model="dateUpload">
             </div>
             <div class="col-3">
-              <button class="btn btn-success">Upload Excel</button>
+              <input class="form-control" type="file" id="formFile" file-model="myFile">
+            </div>
+            <div class="col-3">
+              <button class="btn btn-success" ng-click="uploadFile()">Upload Excel</button>
             </div>
           </div>
         </div>

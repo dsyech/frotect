@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'v8.6.12',
-        'version' => '8.6.12.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => 'ac12ef0bcc657494b05b7ae3b924a310ea3cac8a',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -92,6 +92,15 @@
             'install_path' => __DIR__ . '/../egulias/email-validator',
             'aliases' => array(),
             'reference' => '0dbf5d78455d4d6a41d186da50adc1122ec066f4',
+            'dev_requirement' => false,
+        ),
+        'ezyang/htmlpurifier' => array(
+            'pretty_version' => 'v4.16.0',
+            'version' => '4.16.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ezyang/htmlpurifier',
+            'aliases' => array(),
+            'reference' => '523407fb06eb9e5f3d59889b3978d5bfe94299c8',
             'dev_requirement' => false,
         ),
         'facade/flare-client-php' => array(
@@ -395,12 +404,12 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'v8.6.12',
-            'version' => '8.6.12.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'ac12ef0bcc657494b05b7ae3b924a310ea3cac8a',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -473,6 +482,33 @@
             'install_path' => __DIR__ . '/../league/mime-type-detection',
             'aliases' => array(),
             'reference' => 'a6dfb1194a2946fcdc1f38219445234f65b35c96',
+            'dev_requirement' => false,
+        ),
+        'maennchen/zipstream-php' => array(
+            'pretty_version' => '3.1.0',
+            'version' => '3.1.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../maennchen/zipstream-php',
+            'aliases' => array(),
+            'reference' => 'b8174494eda667f7d13876b4a7bfef0f62a7c0d1',
+            'dev_requirement' => false,
+        ),
+        'markbaker/complex' => array(
+            'pretty_version' => '3.0.2',
+            'version' => '3.0.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../markbaker/complex',
+            'aliases' => array(),
+            'reference' => '95c56caa1cf5c766ad6d65b6344b807c1e8405b9',
+            'dev_requirement' => false,
+        ),
+        'markbaker/matrix' => array(
+            'pretty_version' => '3.0.1',
+            'version' => '3.0.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../markbaker/matrix',
+            'aliases' => array(),
+            'reference' => '728434227fe21be27ff6d86621a1b13107a2562c',
             'dev_requirement' => false,
         ),
         'mockery/mockery' => array(
@@ -579,6 +615,15 @@
             'aliases' => array(),
             'reference' => '4f7fd7836c6f332bb2933569e566a0d6c4cbed74',
             'dev_requirement' => true,
+        ),
+        'phpoffice/phpspreadsheet' => array(
+            'pretty_version' => '1.29.0',
+            'version' => '1.29.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpoffice/phpspreadsheet',
+            'aliases' => array(),
+            'reference' => 'fde2ccf55eaef7e86021ff1acce26479160a0fa0',
+            'dev_requirement' => false,
         ),
         'phpoption/phpoption' => array(
             'pretty_version' => '1.9.1',
@@ -730,8 +775,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -777,18 +822,18 @@
             'dev_requirement' => false,
         ),
         'ramsey/uuid' => array(
-            'pretty_version' => '4.2.3',
-            'version' => '4.2.3.0',
+            'pretty_version' => '4.7.4',
+            'version' => '4.7.4.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../ramsey/uuid',
             'aliases' => array(),
-            'reference' => 'fc9bb7fb5388691fd7373cd44dcb4d63bbcf24df',
+            'reference' => '60a4c63ab724854332900504274f6150ff26d286',
             'dev_requirement' => false,
         ),
         'rhumsaa/uuid' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => '4.2.3',
+                0 => '4.7.4',
             ),
         ),
         'sebastian/cli-parser' => array(

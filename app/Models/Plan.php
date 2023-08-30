@@ -28,7 +28,5 @@ class Plan extends Model
         'date',
         'created_at',
         'updated_at',
-        'status_plan',
-        'deleted_reason'
     ];
 }
