@@ -29,15 +29,15 @@ class PlanController extends Controller {
             ->orderBy('witel', 'asc')
             ->paginate(10);
     
-        $plans->map(function ($plan) {
-            $hasLocation = Location::join('actuals', 'locations.id_telegram', '=', 'actuals.id_telegram')
-                ->where('actuals.phone_number', $plan->phone_number)
-                ->where('locations.date', 'LIKE', '%' . $plan->date . '%')
-                ->exists();
+        // $plans->map(function ($plan) {
+        //     $hasLocation = Location::join('actuals', 'locations.id_telegram', '=', 'actuals.id_telegram')
+        //         ->where('actuals.phone_number', $plan->phone_number)
+        //         ->where('locations.date', 'LIKE', '%' . $plan->date . '%')
+        //         ->exists();
     
-            $plan->has_location = $hasLocation;
-            return $plan;
-        });
+        //     $plan->has_location = $hasLocation;
+        //     return $plan;
+        // });
 
         }
         else {
@@ -50,15 +50,15 @@ class PlanController extends Controller {
             ->orderBy('witel', 'asc')
             ->paginate(10);
     
-        $plans->map(function ($plan) {
-            $hasLocation = Location::join('actuals', 'locations.id_telegram', '=', 'actuals.id_telegram')
-                ->where('actuals.phone_number', $plan->phone_number)
-                ->where('locations.date', 'LIKE', '%' . $plan->date . '%')
-                ->exists();
+        // $plans->map(function ($plan) {
+        //     $hasLocation = Location::join('actuals', 'locations.id_telegram', '=', 'actuals.id_telegram')
+        //         ->where('actuals.phone_number', $plan->phone_number)
+        //         ->where('locations.date', 'LIKE', '%' . $plan->date . '%')
+        //         ->exists();
     
-            $plan->has_location = $hasLocation;
-            return $plan;
-        });
+        //     $plan->has_location = $hasLocation;
+        //     return $plan;
+        // });
 
         }
         return response()->json([
