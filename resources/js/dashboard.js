@@ -1,7 +1,7 @@
 var app = angular.module("myApp", []);
 app.controller("myCtrl", function ($scope, $location, $http) {
   $scope.loading = false;
-  $scope.super = [];
+  $scope.laporan = [];
   $scope.total_plan_patroli = 0;
   $scope.total_plan_wasman = 0;
   $scope.total_actual_patroli = 0;
@@ -181,74 +181,11 @@ app.controller("myCtrl", function ($scope, $location, $http) {
         chart.render();
       });
     $http
-      .get("api/report?start_date=" + date1 + "&end_date=" + date2)
+      .get("api/report?data=laporan&start_date=" + date1 + "&end_date=" + date2)
       .then(function (response) {
         $scope.loading = true;
-        $scope.super = response.data;
-        //chart wasman
-        var options = {
-          series: [],
-          chart: {
-            height: 550,
-            type: "bar",
-            events: {
-              dataPointSelection: function (event, chartContext, config) {
-                // window.location.href = "/frotect-website/plan";
-              },
-            },
-          },
-          plotOptions: {
-            bar: {
-              columnWidth: "60%",
-            },
-          },
-          colors: ["#03C3EC"],
-          dataLabels: {
-            enabled: false,
-          },
-          legend: {
-            show: true,
-            showForSingleSeries: true,
-            customLegendItems: ["Actual", "Plan"],
-            markers: {
-              fillColors: ["#03C3EC", "#696CFF"],
-            },
-          },
-        };
-
-        var data = [];
-        for (var i = 0; i < $scope.super.length; i++) {
-          var provinceData = {
-            x: $scope.super[i].witel,
-            y: $scope.super[i].actual_wasman,
-            goals: [
-              {
-                name: "Plan",
-                value: parseFloat($scope.super[i].plan_wasman),
-                strokeHeight: 5,
-                strokeColor: "#696CFF",
-              },
-            ],
-          };
-          data.push(provinceData);
-        }
-
-        options.series.push({
-          name: "Actual",
-          data: data,
-        });
-
-        document.querySelector("#wasmanChart").innerHTML = ""; // Menghapus elemen HTML chart
-
-        var chart = new ApexCharts(
-          document.querySelector("#wasmanChart"),
-          options
-        );
-        chart.render();
+        $scope.laporan = response.data;
       });
-
-    //count ggn
-    //count slh
   }
 
   var today = formatDate(new Date());

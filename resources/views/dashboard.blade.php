@@ -144,10 +144,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="s in super">
-                  <th scope="row">{{s.witel}}</th>
-                  <td>{{s.laporan | number:2}}</td>
-                  <td>{{s.lokasi | number:2}}</td>
+                <tr ng-repeat="l in laporan">
+                  <th scope="row">{{l.witel}}</th>
+                  <td>{{l.laporan | number:2}}</td>
+                  <td>0</td>
                 </tr>
               </tbody>
             </table>

@@ -100,6 +100,35 @@ class ReportController extends Controller {
             }
             return response()->json($laporan);
         }
+        if($data=='laporan'){
+            $witel = ['ACEH', 'MEDAN', 'SUMUT', 'SUMBAR', 'RIDAR', 'RIKEP', 'JAMBI', 'BENGKULU', 'BABEL', 'SUMSEL', 'LAMPUNG'];        
+            foreach ($witel as $w) {
+                $total_plan = Plan::where('witel', $w)
+                    ->whereBetween('date', [$start_date, $end_date])
+                    ->count();
+        
+                $total_actual = Actual::join('plans', function ($join) use ($w) {
+                    $join->on('actuals.phone_number', '=', 'plans.phone_number')
+                        ->where('plans.witel', $w)
+                        ->whereColumn('plans.date', 'actuals.date');
+                })
+                ->whereBetween('actuals.date', [$start_date, $end_date])
+                ->count();
+        
+                if (($total_plan) > 0) {
+                    $laporan[] = [
+                        'witel' => $w,
+                        'laporan' => (($total_actual) / ($total_plan)) * 100,
+                    ];
+                } else {
+                    $laporan[] = [
+                        'witel' => $w,
+                        'laporan' => 0,
+                    ];
+                }
+            }
+            return response()->json($laporan);
+        }
         else {
             $witel = ['ACEH', 'MEDAN', 'SUMUT', 'SUMBAR', 'RIDAR', 'RIKEP', 'JAMBI', 'BENGKULU', 'BABEL', 'SUMSEL', 'LAMPUNG'];        
             foreach ($witel as $w) {
