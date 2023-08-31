@@ -71,7 +71,7 @@
                   <th scope="col">Link B</th>
                   <th scope="col">Laporan</th>
                   <th scope="col">Foto</th>
-                  <th scope="col">Lokasi</th>
+                  <!--<th scope="col">Lokasi</th>-->
                 </tr>
               </thead>
               <tbody>
@@ -84,14 +84,14 @@
                   <td>{{p.link_b}}</td>
                   <td>{{p.report}}</td>
                   <td><img ng-src="{{ 'http://10.16.110.100/frotect/' + p.photo }}" alt="" height="100px"></td>
-                   <td>
+                   <!--<td>
                     <button class="btn btn-small btn-danger" ng-if="p.has_location">
                         <i class="fa-solid fa-location-pin"></i>
                     </button>
                     <button class="btn btn-small" ng-if="!p.has_location" disabled style="background-color: #e9ecef;">
                         <i class="fa-solid fa-location-pin"></i>
                     </button>
-                </td>
+                </td>-->
 
                 </tr>
               </tbody>
