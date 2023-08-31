@@ -25,6 +25,14 @@ app.controller("myCtrl", function ($scope, $location, $http) {
     $scope.loading = false;
     console.log(date1);
     console.log(date2);
+    $scope.laporan = [];
+    $scope.lokasi = [];
+    $scope.total_plan_patroli = 0;
+    $scope.total_plan_wasman = 0;
+    $scope.total_actual_patroli = 0;
+    $scope.total_actual_wasman = 0;
+    $scope.persen_patroli = 0;
+    $scope.persen_wasman = 0;
 
     $http
       .get("api/report?data=all&start_date=" + date1 + "&end_date=" + date2)
