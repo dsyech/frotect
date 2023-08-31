@@ -129,6 +129,44 @@ class ReportController extends Controller {
             }
             return response()->json($laporan);
         }
+        if($data=='lokasi'){
+            $witel = ['ACEH', 'MEDAN', 'SUMUT', 'SUMBAR', 'RIDAR', 'RIKEP', 'JAMBI', 'BENGKULU', 'BABEL', 'SUMSEL', 'LAMPUNG'];
+            $lokasi = [];        
+            foreach ($witel as $w) {
+                $total_plan = Plan::where('witel', $w)
+                ->whereBetween('date', [$start_date, $end_date])
+                ->count();
+
+                $unique_data = Location::whereBetween('date', [$start_date, $end_date])
+                ->distinct('id_telegram')
+                ->pluck('id_telegram');
+    
+                $matching_phone_numbers = Actual::whereIn('id_telegram', $unique_data)
+                ->whereBetween('date', [$start_date, $end_date])
+                ->pluck('phone_number');
+    
+                $total_location = Plan::whereIn('phone_number', $matching_phone_numbers)
+                ->whereBetween('date', [$start_date, $end_date])
+                ->where('witel', $w)
+                ->pluck('witel')->count();
+
+                if($total_plan){
+                    $lokasi[] = [
+                        'witel' => $w,
+                        'lokasi' => $total_location *100 / $total_plan
+                    ];
+                }
+                else {
+                    $lokasi[] = [
+                        'witel' => $w,
+                        'lokasi' => 0
+                    ];
+                }
+
+
+            }
+            return response()->json($lokasi);
+        }
         else {
             $witel = ['ACEH', 'MEDAN', 'SUMUT', 'SUMBAR', 'RIDAR', 'RIKEP', 'JAMBI', 'BENGKULU', 'BABEL', 'SUMSEL', 'LAMPUNG'];        
             foreach ($witel as $w) {

@@ -2,6 +2,7 @@ var app = angular.module("myApp", []);
 app.controller("myCtrl", function ($scope, $location, $http) {
   $scope.loading = false;
   $scope.laporan = [];
+  $scope.lokasi = [];
   $scope.total_plan_patroli = 0;
   $scope.total_plan_wasman = 0;
   $scope.total_actual_patroli = 0;
@@ -185,6 +186,14 @@ app.controller("myCtrl", function ($scope, $location, $http) {
       .then(function (response) {
         $scope.loading = true;
         $scope.laporan = response.data;
+      });
+
+      $http
+      .get("api/report?data=lokasi&start_date=" + date1 + "&end_date=" + date2)
+      .then(function (response) {
+        $scope.loading = true;
+        $scope.lokasi = response.data;
+        console.log($scope.lokasi);
       });
   }
 

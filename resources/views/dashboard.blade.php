@@ -147,7 +147,7 @@
                 <tr ng-repeat="l in laporan">
                   <th scope="row">{{l.witel}}</th>
                   <td>{{l.laporan | number:2}}</td>
-                  <td>0</td>
+                  <td>{{ lokasi[$index].lokasi | number:2 }}</td>
                 </tr>
               </tbody>
             </table>
