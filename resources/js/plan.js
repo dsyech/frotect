@@ -40,10 +40,12 @@ app.controller("myCtrl", function ($scope, $location, $http) {
       .then(function (response) {
         $scope.loading=true;
         console.log("Upload berhasil:", response.data);
+        getData(today, today, $scope.selectedWitel, 1);
       })
       .catch(function (error) {
         // Gagal, lakukan sesuatu
         console.error("Upload gagal:", error);
+        getData(today, today, $scope.selectedWitel, 1);
       });
   };
 

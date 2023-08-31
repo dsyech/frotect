@@ -84,6 +84,7 @@ class PlanController extends Controller {
         $totalRows = $worksheetInfo[0]['totalRows'];
         $totalRows = $sheet->getHighestDataRow();
 
+        
         for ($row = 2; $row <= $totalRows; $row++) {
             if ($sheet->getCell("A{$row}")->getValue() != '') {
                 $phone_number = $sheet->getCell("F{$row}")->getValue();
@@ -91,89 +92,30 @@ class PlanController extends Controller {
                     $phone_number = "0".$phone_number;
                     $phone_number = str_replace(" ","", $phone_number);
                 }
-                // return $phone_number;
+
+               try {
+                // Kode yang mungkin menyebabkan kesalahan
                 $plan = Plan::create([
-                'id' => Uuid::uuid4()->toString(),
-                'witel' => $witel,
-                'link_a' => $sheet->getCell("A{$row}")->getValue(),
-                'link_b' => $sheet->getCell("B{$row}")->getValue(),
-                'activity' => $sheet->getCell("C{$row}")->getValue(),
-                'km' => $sheet->getCell("D{$row}")->getValue(),
-                'name' => $sheet->getCell("E{$row}")->getValue(),
-                'phone_number' => $phone_number,
-                'operator' => $sheet->getCell("G{$row}")->getValue(),
-                'operator_pic' => $sheet->getCell("H{$row}")->getValue(),
-                'operator_phone_number' =>  $sheet->getCell("I{$row}")->getValue(),
-                'date' => $date
+                    'id' => Uuid::uuid4()->toString(),
+                    'witel' => $witel,
+                    'link_a' => $sheet->getCell("A{$row}")->getValue(),
+                    'link_b' => $sheet->getCell("B{$row}")->getValue(),
+                    'activity' => $sheet->getCell("C{$row}")->getValue(),
+                    'km' => $sheet->getCell("D{$row}")->getValue(),
+                    'name' => $sheet->getCell("E{$row}")->getValue(),
+                    'phone_number' => $phone_number,
+                    'operator' => $sheet->getCell("G{$row}")->getValue(),
+                    'operator_pic' => $sheet->getCell("H{$row}")->getValue(),
+                    'operator_phone_number' =>  $sheet->getCell("I{$row}")->getValue(),
+                    'date' => $date,
                 ]);
-
-                if ($plan){
-                    return "OK";
-                }
-                else {
-                    return "NOK";
-                }
-
+            } catch (Exception $e) {
+                // Tindakan jika terjadi kesalahan
+                echo "Terjadi kesalahan: " . $e->getMessage();
             }
-            else{
-                return "NO FILE";
+            } else {
+                return "Done";
             }
-            // if ($sheet->getCell("A{$row}")->getValue() != '') {
-            //     $phone_number = $sheet->getCell("F{$row}")->getValue();
-            //     if (!(str_starts_with($phone_number, '0'))) {
-            //         $phone_number = "0".$phone_number;
-            //         $phone_number = str_replace(" ","", $phone_number);
-            //     }
-            //     $plan = Plan::create([
-            //         'id' => Uuid::uuid4()->toString(),
-            //         'witel' => $witel,
-            //         'link_a' => $sheet->getCell("A{$row}")->getValue(),
-            //         'link_b' => $sheet->getCell("B{$row}")->getValue(),
-            //         'activity' => $sheet->getCell("C{$row}")->getValue(),
-            //         'km' => $sheet->getCell("D{$row}")->getValue(),
-            //         'name' => $sheet->getCell("E{$row}")->getValue(),
-            //         'phone_number' => $phone_number,
-            //         'operator' => $sheet->getCell("G{$row}")->getValue(),
-            //         'operator_pic' => $sheet->getCell("H{$row}")->getValue(),
-            //         'operator_phone_number' =>  $sheet->getCell("I{$row}")->getValue(),
-            //         'date' => $date
-            //     ]);
-
-            //     if($plan){
-            //         return "OK";
-            //     }
-            //     else{
-            //         return "NOK";
-            //     }
-
-            //    try {
-            //     // Kode yang mungkin menyebabkan kesalahan
-            //     $plan = Plan::create([
-            //         'id' => Uuid::uuid4()->toString(),
-            //         'witel' => $witel,
-            //         'link_a' => $sheet->getCell("A{$row}")->getValue(),
-            //         'link_b' => $sheet->getCell("B{$row}")->getValue(),
-            //         'activity' => $sheet->getCell("C{$row}")->getValue(),
-            //         'km' => $sheet->getCell("D{$row}")->getValue(),
-            //         'name' => $sheet->getCell("E{$row}")->getValue(),
-            //         'phone_number' => $phone_number,
-            //         'operator' => $sheet->getCell("G{$row}")->getValue(),
-            //         'operator_pic' => $sheet->getCell("H{$row}")->getValue(),
-            //         'operator_phone_number' =>  $sheet->getCell("I{$row}")->getValue(),
-            //         'date' => $date
-            //     ]);
-            // } catch (Exception $e) {
-            //     return response()->json([
-            //         'status' =>  '0',
-            //         'message' => $e->getMessage()
-            //     ]);  
-            // }
-            // } else {
-            //     return response()->json([
-            //         'status' =>  '0',
-            //         'message' => 'No Data'
-            //     ]); 
-            // }
         }
 
     }
