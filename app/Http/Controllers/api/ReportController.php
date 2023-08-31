@@ -48,6 +48,58 @@ class ReportController extends Controller {
             return response()->json($laporan);
 
         }
+        if($data == 'patroli'){
+            $witel = ['ACEH', 'MEDAN', 'SUMUT', 'SUMBAR', 'RIDAR', 'RIKEP', 'JAMBI', 'BENGKULU', 'BABEL', 'SUMSEL', 'LAMPUNG'];       
+            $laporan = []; 
+            foreach ($witel as $w) {
+                $total_plan_patroli = Plan::where('witel', $w)
+                    ->where( 'activity', 'LIKE', '%PATROLI%' )
+                    ->whereBetween('date', [$start_date, $end_date])
+                    ->count();
+                
+                $total_actual_patroli = Actual::join('plans', function ($join) use ($w) {
+                    $join->on('actuals.phone_number', '=', 'plans.phone_number')
+                        ->where('plans.witel', $w)
+                        ->where( 'plans.activity', 'LIKE', '%PATROLI%' )
+                        ->whereColumn('plans.date', 'actuals.date');
+                })
+                ->whereBetween('actuals.date', [$start_date, $end_date])
+                ->count();
+                    $laporan[] = [
+                        'witel' => $w,
+                        'plan_patroli' => $total_plan_patroli,
+                        'actual_patroli'=> $total_actual_patroli,
+                    ];
+ 
+            }
+            return response()->json($laporan);
+        }
+        if($data == 'wasman'){
+            $witel = ['ACEH', 'MEDAN', 'SUMUT', 'SUMBAR', 'RIDAR', 'RIKEP', 'JAMBI', 'BENGKULU', 'BABEL', 'SUMSEL', 'LAMPUNG'];       
+            $laporan = []; 
+            foreach ($witel as $w) {
+                $total_plan_wasman = Plan::where('witel', $w)
+                    ->where( 'activity', 'LIKE', '%WASMAN%' )
+                    ->whereBetween('date', [$start_date, $end_date])
+                    ->count();
+                
+                $total_actual_wasman = Actual::join('plans', function ($join) use ($w) {
+                    $join->on('actuals.phone_number', '=', 'plans.phone_number')
+                        ->where('plans.witel', $w)
+                        ->where( 'plans.activity', 'LIKE', '%WASMAN%' )
+                        ->whereColumn('plans.date', 'actuals.date');
+                })
+                ->whereBetween('actuals.date', [$start_date, $end_date])
+                ->count();
+                    $laporan[] = [
+                        'witel' => $w,
+                        'plan_wasman' => $total_plan_wasman,
+                        'actual_wasman'=> $total_actual_wasman,
+                    ];
+ 
+            }
+            return response()->json($laporan);
+        }
         else {
             $witel = ['ACEH', 'MEDAN', 'SUMUT', 'SUMBAR', 'RIDAR', 'RIKEP', 'JAMBI', 'BENGKULU', 'BABEL', 'SUMSEL', 'LAMPUNG'];        
             foreach ($witel as $w) {
