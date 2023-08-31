@@ -83,7 +83,7 @@
                   <td>{{p.link_a}}</td>
                   <td>{{p.link_b}}</td>
                   <td>{{p.report}}</td>
-                  <td><img ng-src="{{ 'http://10.16.110.100/frotect/' + p.photo }}" alt="" height="100px"></td>
+                  <td><img ng-src="{{ 'http://10.16.110.100/frotect-v1/' + p.photo }}" alt="" height="100px"></td>
                    <td>
                     <button class="btn btn-small btn-danger" ng-if="p.has_location">
                         <i class="fa-solid fa-location-pin"></i>

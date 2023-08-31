@@ -84,13 +84,13 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link" ng-class="{ 'collapsed': isActivePath('http://localhost/frotect/') }" href="http://localhost/frotect/">
+        <a class="nav-link" ng-class="{ 'collapsed': isActivePath('http://10.16.110.100/frotect/') }" href="http://10.16.110.100/frotect/">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" ng-class="{ 'collapsed': isActivePath('http://localhost/frotect/plan') }" href="http://localhost/frotect/plan">
+        <a class="nav-link" ng-class="{ 'collapsed': isActivePath('http://10.16.110.100/frotect/plan') }" href="http://10.16.110.100/frotect/plan">
           <i class="bi bi-cone-striped"></i>
           <span>Patroli Wasman</span>
         </a>
