@@ -119,6 +119,19 @@ class PlanController extends Controller {
         }
 
     }
+
+    public function delete(Request $request){
+        $id = $request->id;
+        try {
+            $plan = Plan::findOrFail($id);
+            $plan->delete();
+            
+            return response()->json(['message' => 'Data deleted successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to delete data']);
+        }
+    }
+    
     
     
 }

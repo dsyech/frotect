@@ -97,7 +97,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
         var data = [];
         for (var i = 0; i < $scope.super.length; i++) {
           var provinceData = {
-            x: $scope.super[i].witel,
+            x: $scope.super[i].witel+"("+$scope.super[i].plan_patroli+")",
             y: $scope.super[i].actual_patroli,
             goals: [
               {
@@ -162,7 +162,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
         var data = [];
         for (var i = 0; i < $scope.super.length; i++) {
           var provinceData = {
-            x: $scope.super[i].witel,
+            x: $scope.super[i].witel+"("+$scope.super[i].plan_wasman+")",
             y: $scope.super[i].actual_wasman,
             goals: [
               {

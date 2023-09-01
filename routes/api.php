@@ -19,6 +19,7 @@ use App\Http\Controllers\api\LocationController;
 
 Route::get('/report', [ReportController::class, 'index']);
 Route::get('/plan', [PlanController::class, 'index']);
+Route::get('/plan/delete', [PlanController::class, 'delete']);
 Route::post('/plan/file', [PlanController::class, 'file']);
 Route::get('/location', [LocationController::class, 'index']);
 

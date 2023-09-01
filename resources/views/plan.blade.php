@@ -72,6 +72,7 @@
                   <th scope="col">Laporan</th>
                   <th scope="col">Foto</th>
                  <!-- <th scope="col">Lokasi</th> -->
+                 <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -92,6 +93,9 @@
                         <i class="fa-solid fa-location-pin"></i>
                     </button>
                 </td> -->
+                <td><button class="btn btn-small btn-danger" ng-click="delete(p.id)">
+                  <i class="fa-solid fa-trash"></i>
+              </button></td>
 
                 </tr>
               </tbody>

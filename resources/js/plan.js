@@ -123,6 +123,20 @@ app.controller("myCtrl", function ($scope, $location, $http) {
     getData($scope.start_date, $scope.end_date, $scope.selectedWitel, 1);
     // Lakukan tindakan atau perubahan sesuai dengan nilai terpilih
   };
+
+  $scope.delete = function(id){
+    $scope.loading=false;
+    $http
+        .get(
+          "api/plan/delete?id="+id
+        )
+        .then(function (response) {
+          $scope.loading=true;
+          $scope.response = response.data;
+          console.log($scope.response);
+          getData(today, today, $scope.selectedWitel, 1);
+        });
+  }
 });
 
 app.directive("fileModel", [
