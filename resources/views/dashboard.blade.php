@@ -1,7 +1,7 @@
 @extends('layout/template')
 
 @section('head')
-<title>Beranda</title>
+<title>Dashboard</title>
 @endsection
 
 @section('content')
