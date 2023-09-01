@@ -40,7 +40,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
         console.log(response.data);
         $scope.total_plan_patroli = response.data.total_plan_patroli;
         $scope.total_plan_wasman = response.data.total_plan_wasman;
-        $scope.total_actual_patroli = response.data.total_actual_wasman;
+        $scope.total_actual_patroli = response.data.total_actual_patroli;
         $scope.total_actual_wasman = response.data.total_actual_wasman;
         $scope.persen_patroli =
           ($scope.total_actual_patroli * 100) / $scope.total_plan_patroli;
