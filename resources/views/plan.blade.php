@@ -59,8 +59,8 @@
     <div class="row">
         <div class="card">
           <div class="card-header">Plan Patroli & Wasman</div>
-          <div class="card-body">
-            <table class="table table-striped">
+          <div class="card-body table-responsive">
+            <table class="table table-striped" style="overflow-x: auto">
               <thead>
                 <tr>
                   <th scope="col">Witel</th>
