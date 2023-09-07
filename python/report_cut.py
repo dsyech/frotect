@@ -36,7 +36,7 @@ def photo(update, context):
 
     photo_file = update.message.photo[-1].get_file().file_path
     sentence = message.caption
-    array_sentence = sentence.rsplit('\n', 3)
+    array_sentence = sentence.rsplit('\n', 4)
     try :
         witel =  array_sentence[0]
         link =  array_sentence[1]
@@ -54,7 +54,7 @@ def photo(update, context):
     if(check_phone_number):
         phone_number = phone_number.replace(' ','')
         phone_number = phone_number.replace('-', '')
-        photo_name = "assets/upload/"+phone_number+str(x.year)+"-"+str_month+"-"+str_day+".jpg"
+        photo_name = "assets/upload/cut"+phone_number+str(x.year)+"-"+str_month+"-"+str_day+".jpg"
         
         url = 'http://10.16.110.100/frotect/api/cut/report'
         myobj = {
