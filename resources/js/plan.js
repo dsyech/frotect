@@ -143,7 +143,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
     localStorage.setItem("phone_number", phone_number);
     localStorage.setItem("start_date", $scope.start_date);
     localStorage.setItem("end_date", $scope.end_date);
-    window.location.href = 'http://localhost/frotect/location';
+    window.location.href = '/frotect/location';
   }
 });
 
