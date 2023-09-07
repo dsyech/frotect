@@ -67,7 +67,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
         var options = {
           series: [],
           chart: {
-            height: 550,
+            height: 490,
             type: "bar",
             events: {
               dataPointSelection: function (event, chartContext, config) {
@@ -132,7 +132,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
         var options = {
           series: [],
           chart: {
-            height: 550,
+            height: 490,
             type: "bar",
             events: {
               dataPointSelection: function (event, chartContext, config) {

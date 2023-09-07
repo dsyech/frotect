@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\FocutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,4 @@ use App\Http\Controllers\LocationController;
 Route::get('/', [DashboardController::class, 'index']);
 Route::get('/plan', [PlanController::class, 'index']);
 Route::get('/location', [LocationController::class, 'index']);
+Route::get('/focut', [FocutController::class, 'index']);

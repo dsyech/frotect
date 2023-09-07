@@ -97,16 +97,9 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('/gangguan') }" href="/gangguan">
-          <i class="bi bi-file-earmark"></i>
+        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('http://10.16.110.100/frotect/focut') }" href="http://10.16.110.100/frotect/focut">
+          <i class="bi bi-x-circle"></i>
           <span>Data Gangguan</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('/datek') }" href="/datek">
-          <i class="bi bi-file-earmark"></i>
-          <span>Data Teknis</span>
         </a>
       </li>
 
@@ -114,6 +107,13 @@
         <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('/slh') }" href="/slh">
           <i class="bi bi-file-earmark"></i>
           <span>Span Loss High</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('/datek') }" href="/datek">
+          <i class="bi bi-file-earmark"></i>
+          <span>Data Teknis</span>
         </a>
       </li>
 
