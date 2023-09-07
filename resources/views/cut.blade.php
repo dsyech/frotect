@@ -48,13 +48,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row"></th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td><img src="" alt="" height="100px"></td>
+                <tr  ng-repeat="c in cut">
+                  <th scope="row">{{c.witel}}</th>
+                  <td>{{c.link}}</td>
+                  <td>{{c.report}}</td>
+                  <td>{{c.name}}</td>
+                  <td>{{c.phone_number}}</td>
+                  <td><img src={{c.photo}} alt="" height="100px"></td>
                   <td>
                     <button class="btn btn-small btn-success">
                     <i class="fa-solid fa-location-pin"></i> Lokasi</button>
@@ -76,5 +76,5 @@
     class="bi bi-arrow-up-short"></i></a>
 @endsection
 @section('js')
-<script src="resources/js/plan.js"></script>
+<script src="resources/js/cut.js"></script>
 @endsection

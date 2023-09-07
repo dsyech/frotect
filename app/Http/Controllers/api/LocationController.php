@@ -17,14 +17,7 @@ class LocationController extends Controller {
         ->select('locations.lat', 'locations.long')
         ->get();
     
-        return response()->json($location);    
-
-        // Menggunakan $hasLocation untuk mengatur nilai true atau false
-        // if ( $location ) {
-        //     return response()->json($lo);    
-        // } else {
-        //     return response()->json(false); 
-        // }
+        return response()->json($location);
     }
 }
 

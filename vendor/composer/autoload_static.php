@@ -535,6 +535,8 @@ class ComposerStaticInit308355cdeb21b014d28d5dad7da91598
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
+        'App\\Http\\Controllers\\FocutController' => __DIR__ . '/../..' . '/app/Http/Controllers/FocutController.php',
+        'App\\Http\\Controllers\\LocationController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocationController.php',
         'App\\Http\\Controllers\\PlanController' => __DIR__ . '/../..' . '/app/Http/Controllers/PlanController.php',
         'App\\Http\\Controllers\\api\\LocationController' => __DIR__ . '/../..' . '/app/Http/Controllers/api/LocationController.php',
         'App\\Http\\Controllers\\api\\PlanController' => __DIR__ . '/../..' . '/app/Http/Controllers/api/PlanController.php',

@@ -105,7 +105,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('/slh') }" href="/slh">
-          <i class="bi bi-file-earmark"></i>
+          <i class="bi bi-graph-up-arrow"></i>
           <span>Span Loss High</span>
         </a>
       </li>

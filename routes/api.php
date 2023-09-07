@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\ReportController;
 use App\Http\Controllers\api\PlanController;
 use App\Http\Controllers\api\LocationController;
+use App\Http\Controllers\api\CutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +19,13 @@ use App\Http\Controllers\api\LocationController;
 */
 
 Route::get('/report', [ReportController::class, 'index']);
+
 Route::get('/plan', [PlanController::class, 'index']);
 Route::get('/plan/delete', [PlanController::class, 'delete']);
 Route::post('/plan/file', [PlanController::class, 'file']);
+
 Route::get('/location', [LocationController::class, 'index']);
 
-// Route::get('/wasman', [WasmanController::class, 'index']);
-// Route::get('/api-key', function () {
-//     return response()->json(['api_key' => env('API_KEY')]);
-// });
+Route::get('/cut', [CutController::class, 'index']);
+Route::post('/cut/report', [CutController::class, 'report']);
+Route::post('/cut/location', [CutController::class, 'location']);
