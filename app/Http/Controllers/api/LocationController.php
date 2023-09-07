@@ -11,17 +11,20 @@ class LocationController extends Controller {
         $start_date = $request->start_date;
         $end_date = $request->end_date;
         $phone_number = $request->phone_number;
-        $hasLocation = Location::join( 'actuals', 'locations.id_telegram', '=', 'actuals.id_telegram' )
-        ->where( 'actuals.phone_number', $phone_number )
+        $location = Location::join('actuals', 'locations.id_telegram', '=', 'actuals.id_telegram')
+        ->where('actuals.phone_number', $phone_number)
         ->whereBetween('actuals.date', [$start_date, $end_date])
-        ->exists();
+        ->select('locations.lat', 'locations.long')
+        ->get();
+    
+        return response()->json($location);    
 
         // Menggunakan $hasLocation untuk mengatur nilai true atau false
-        if ( $hasLocation ) {
-            return response()->json(true);    
-        } else {
-            return response()->json(false); 
-        }
-
+        // if ( $location ) {
+        //     return response()->json($lo);    
+        // } else {
+        //     return response()->json(false); 
+        // }
     }
 }
+

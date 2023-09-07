@@ -137,7 +137,17 @@ app.controller("myCtrl", function ($scope, $location, $http) {
           getData(today, today, $scope.selectedWitel, 1);
         });
   }
+
+  $scope.location = function(phone_number){
+    console.log(phone_number);
+    localStorage.setItem("phone_number", phone_number);
+    localStorage.setItem("start_date", $scope.start_date);
+    localStorage.setItem("end_date", $scope.end_date);
+    window.location.href = 'http://localhost/frotect/location';
+  }
 });
+
+
 
 app.directive("fileModel", [
   "$parse",

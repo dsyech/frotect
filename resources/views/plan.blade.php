@@ -71,7 +71,7 @@
                   <th scope="col">Link B</th>
                   <th scope="col">Laporan</th>
                   <th scope="col">Foto</th>
-                 <!-- <th scope="col">Lokasi</th> -->
+                 <th scope="col">Lokasi</th>
                  <th>Action</th>
                 </tr>
               </thead>
@@ -85,16 +85,12 @@
                   <td>{{p.link_b}}</td>
                   <td>{{p.report}}</td>
                   <td><img ng-src="{{ 'http://10.16.110.100/frotect-v1/' + p.photo }}" alt="" height="100px"></td>
-                  <!-- <td>
-                    <button class="btn btn-small btn-danger" ng-if="p.has_location">
-                        <i class="fa-solid fa-location-pin"></i>
-                    </button>
-                    <button class="btn btn-small" ng-if="!p.has_location" disabled style="background-color: #e9ecef;">
-                        <i class="fa-solid fa-location-pin"></i>
-                    </button>
-                </td> -->
+                  <td>
+                    <button class="btn btn-small btn-success" ng-click="location(p.phone_number)">
+                    <i class="fa-solid fa-location-pin"></i> Lokasi</button>
+                  </td>
                 <td><button class="btn btn-small btn-danger" ng-click="delete(p.id)">
-                  <i class="fa-solid fa-trash"></i>
+                  <i class="fa-solid fa-trash"></i> Hapus
               </button></td>
 
                 </tr>
