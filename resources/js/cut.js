@@ -38,7 +38,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
         // Iterasi melalui data respons dan tambahkan marker untuk setiap pasangan lat dan long
         if($scope.location.length){
             initialLatLng = [$scope.location[0].lat, $scope.location[0].long];
-            map.setView(initialLatLng, 10);
+            map.setView(initialLatLng, 5.5);
             L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
               map
             );
@@ -50,8 +50,8 @@ app.controller("myCtrl", function ($scope, $location, $http) {
               }
         }
         else {
-            var initialLatLng = ["0", "0"];
-            map.setView(initialLatLng, 10);
+            var initialLatLng = [-0.6, 102];
+            map.setView(initialLatLng, 5.5);
             L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
               map
             );

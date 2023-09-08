@@ -73,9 +73,9 @@ class CutController extends Controller {
         // Update the lat and long fields
         $cut->lat = $lat;
         $cut->long = $long;
-        $cut->save();
+        $edit = $cut->save();
 
-        if($cut){
+        if($edit){
             return response()->json( [ 'status' => 'success', 'message' => 'Location updated successfully' ] );
         }
         else {
