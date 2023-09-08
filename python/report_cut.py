@@ -54,8 +54,7 @@ def photo(update, context):
     if(check_phone_number):
         phone_number = phone_number.replace(' ','')
         phone_number = phone_number.replace('-', '')
-        photo_name = "assets/upload/cut"+phone_number+str(x.year)+"-"+str_month+"-"+str_day+".jpg"
-        
+        photo_name = "assets/upload/cut/"+phone_number+str(x.year)+"-"+str_month+"-"+str_day+".jpg"
         url = 'http://10.16.110.100/frotect/api/cut/report'
         myobj = {
             'id_telegram': id,
@@ -67,8 +66,11 @@ def photo(update, context):
             'photo': photo_name,
             'date': str(x.year)+"-"+str_month+"-"+str_day
         }
+        print(myobj)
         x = requests.post(url, data = myobj)
+        print(x)
         data = json.loads(x.text)
+        print(data)
         message = data['message']
         if data['status'] == 'error':
             user = update.message.from_user
@@ -77,7 +79,10 @@ def photo(update, context):
         elif data['status'] == 'success':
             response = requests.get(photo_file)
 
-            path = 'assets/upload/cut'
+            path = '../assets/upload/cut'
+            if not os.path.exists(path):
+                os.makedirs(path)
+
             if os.path.isdir(path):
                 print("Direktori ada")
                 if os.access(path, os.W_OK):
@@ -86,7 +91,7 @@ def photo(update, context):
                     print("Write access denied")
             else:
                 print("Direktori tidak ditemukan")
-            with open(photo_name, 'wb') as f:
+            with open('../'+photo_name, 'wb') as f:
                 f.write(response.content)
             user = update.message.from_user
             update.message.reply_text("Terima Kasih "+user.first_name+", Data berhasil disimpan")

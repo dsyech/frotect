@@ -36,27 +36,18 @@ class CutController extends Controller {
     }
 
     public function report ( Request $request ) {
-        $id_telegram = $request->input( 'id_telegram' );
-        $name = $request->input( 'name' );
-        $phone_number = $request->input( 'phone_number' );
-        $witel = $request->input( 'witel' );
-        $link = $request->input( 'link' );
-        $report = $request->input( 'report' );
-        $photo = $request->input( 'photo' );
-        $date = $request->input( 'date' );
-
         $cut = Cut::create( [
             'id' => Uuid::uuid4()->toString(),
-            'id_telegram' => $id_telegram,
-            'name' => $name,
-            'phone_number' => $phone_number,
-            'witel' => $witel,
-            'link' => $link,
-            'report' => $report,
-            'photo' => $photo,
+            'id_telegram' => $request->id_telegram,
+            'name' => $request->name,
+            'phone_number' => $request->phone_number,
+            'witel' => $request->witel,
+            'link' => $request->link,
+            'report' => $request->report,
+            'photo' => $request->photo,
             'lat' => null,
             'long' => null,
-            'date' => $date,
+            'date' => $request->date,
         ] );
 
         if ( $cut ) {
