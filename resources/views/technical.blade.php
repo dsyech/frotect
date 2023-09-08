@@ -73,7 +73,6 @@
                  <th scope="col">Type To</th>
                  <th scope="col">NE To</th>
                  <th scope="col">Port To</th>
-                 <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -91,7 +90,6 @@
                   <td>{{t.type_to}}</td>
                   <td>{{t.ne_to}}</td>
                   <td>{{t.port_to}}</td>
-                  <td></td>
                 </tr>
               </tbody>
             </table>
