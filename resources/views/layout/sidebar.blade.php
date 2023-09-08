@@ -104,28 +104,21 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('/slh') }" href="/slh">
+        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('http://10.16.110.100/frotect/slh') }" href="http://10.16.110.100/frotect/slh">
           <i class="bi bi-graph-up-arrow"></i>
           <span>Span Loss High</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('/datek') }" href="/datek">
+        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('http://10.16.110.100/frotect/datek') }" href="http://10.16.110.100/frotect/datek">
           <i class="bi bi-file-earmark"></i>
           <span>Data Teknis</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('/pengaturan') }" href="/pengaturan">
-          <i class="bi bi-gear"></i>
-          <span>Pengaturan</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('/keluar') }" href="/keluar">
+        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('http://10.16.110.100/frotect/logout') }" href="http://10.16.110.100/frotect/logout">
           <i class="bi bi-box-arrow-right"></i>
           <span>Keluar</span>
         </a>
