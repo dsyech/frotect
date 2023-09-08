@@ -2,6 +2,14 @@
 
 @section('head')
 <title>Data Gangguan</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+      #map {
+          height: 500px;
+          margin-bottom: 5%
+      }
+  </style>
 @endsection
 
 @section('content')
@@ -23,7 +31,7 @@
       <div class="card">
         <div class="card-header">Lokasi Gangguan</div>
         <div class="card-body">
-          Map...
+          <div id="map"></div>
         </div>
       </div>
     </div>
@@ -76,5 +84,7 @@
     class="bi bi-arrow-up-short"></i></a>
 @endsection
 @section('js')
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="resources/js/cut.js"></script>
 @endsection

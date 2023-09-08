@@ -97,7 +97,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('http://10.16.110.100/frotect/focut') }" href="http://10.16.110.100/frotect/focut">
+        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('http://10.16.110.100/frotect/cut') }" href="http://10.16.110.100/frotect/cut">
           <i class="bi bi-x-circle"></i>
           <span>Data Gangguan</span>
         </a>

@@ -9,6 +9,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
 
   $scope.loading=false;
   $scope.cut = [];
+  $scope.location = [];
   $scope.currentPage = 1;
   $scope.pageSize = 10; // Jumlah item per halaman
   $scope.totalItems = 0;
@@ -19,6 +20,46 @@ app.controller("myCtrl", function ($scope, $location, $http) {
   $scope.end_date = today;
   $scope.dateUpload = today;
   $scope.selectedWitel = "";
+
+  $scope.checkLocation = function () {
+    $http
+      .get(
+        "api/cut?start_date=" +
+          $scope.start_date +
+          "&end_date=" +
+          $scope.end_date
+      )
+      .then(function (response) {
+        $scope.location = response.data.data;
+        console.log(response.data);
+
+        var map = L.map("map");
+
+        // Iterasi melalui data respons dan tambahkan marker untuk setiap pasangan lat dan long
+        if($scope.location.length){
+            initialLatLng = [$scope.location[0].lat, $scope.location[0].long];
+            map.setView(initialLatLng, 10);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
+              map
+            );
+            for (var i = 0; i < $scope.location.length; i++) {
+                console.log(i);
+                var lat = parseFloat($scope.location[i].lat);
+                var long = parseFloat($scope.location[i].long);
+                L.marker([lat, long], { draggable: false }).addTo(map);
+              }
+        }
+        else {
+            var initialLatLng = ["0", "0"];
+            map.setView(initialLatLng, 10);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
+              map
+            );
+        }
+      });
+  };
+
+  $scope.checkLocation();
 
 
   $scope.isActivePath = function (path) {
