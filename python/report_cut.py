@@ -36,13 +36,13 @@ def photo(update, context):
 
     photo_file = update.message.photo[-1].get_file().file_path
     sentence = message.caption
-    array_sentence = sentence.rsplit('\n', 4)
+    array_sentence = sentence.rsplit('\n', 5)
     try :
         witel =  array_sentence[0]
         link =  array_sentence[1]
         report = array_sentence[2]
-        name = array_sentence[3]
-        phone_number = array_sentence[4]
+        name = array_sentence[4]
+        phone_number = array_sentence[5]
     except :
         user = update.message.from_user
         update.message.reply_text("FORMAT SALAH "+user.first_name+", Data GAGAL disimpan")
