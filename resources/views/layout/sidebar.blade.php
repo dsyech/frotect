@@ -111,19 +111,11 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('http://10.16.110.100/frotect/datek') }" href="http://10.16.110.100/frotect/datek">
+        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('http://10.16.110.100/frotect/technical') }" href="http://10.16.110.100/frotect/technical">
           <i class="bi bi-file-earmark"></i>
           <span>Data Teknis</span>
         </a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" ng-class="{ 'active': isActivePath('http://10.16.110.100/frotect/logout') }" href="http://10.16.110.100/frotect/logout">
-          <i class="bi bi-box-arrow-right"></i>
-          <span>Keluar</span>
-        </a>
-      </li>
-
     </ul>
 
   </aside><!-- End Sidebar-->

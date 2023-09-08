@@ -7,6 +7,7 @@ use App\Http\Controllers\api\PlanController;
 use App\Http\Controllers\api\LocationController;
 use App\Http\Controllers\api\CutController;
 use App\Http\Controllers\api\SlhController;
+use App\Http\Controllers\api\TechnicalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,6 @@ Route::post('/cut/location', [CutController::class, 'location']);
 
 Route::get('/slh', [SlhController::class, 'index']);
 Route::post('/slh/file', [SlhController::class, 'file']);
+
+Route::get('/technical', [TechnicalController::class, 'index']);
+Route::post('/technical/file', [TechnicalController::class, 'file']);
