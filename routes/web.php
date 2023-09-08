@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\CutController;
+use App\Http\Controllers\SlhController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,4 @@ Route::get('/', [DashboardController::class, 'index']);
 Route::get('/plan', [PlanController::class, 'index']);
 Route::get('/location', [LocationController::class, 'index']);
 Route::get('/cut', [CutController::class, 'index']);
+Route::get('/slh', [SlhController::class, 'index']);

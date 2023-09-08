@@ -3,6 +3,8 @@ app.controller("myCtrl", function ($scope, $location, $http) {
   $scope.loading = false;
   $scope.laporan = [];
   $scope.lokasi = [];
+  $scope.location = [];
+  $scope.slh = [];
   $scope.total_plan_patroli = 0;
   $scope.total_plan_wasman = 0;
   $scope.total_actual_patroli = 0;
@@ -213,4 +215,53 @@ app.controller("myCtrl", function ($scope, $location, $http) {
     var end_date = formatDate(new Date($scope.end_date));
     getData(start_date, end_date);
   };
+
+  $scope.checkLocation = function () {
+    $http
+      .get(
+        "api/cut?start_date=" +
+          $scope.start_date +
+          "&end_date=" +
+          $scope.end_date
+      )
+      .then(function (response) {
+        $scope.location = response.data.data;
+        console.log(response.data);
+
+        var map = L.map("map");
+
+        // Iterasi melalui data respons dan tambahkan marker untuk setiap pasangan lat dan long
+        if($scope.location.length){
+            initialLatLng = [$scope.location[0].lat, $scope.location[0].long];
+            map.setView(initialLatLng, 5.5);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
+              map
+            );
+            for (var i = 0; i < $scope.location.length; i++) {
+                console.log(i);
+                var lat = parseFloat($scope.location[i].lat);
+                var long = parseFloat($scope.location[i].long);
+                L.marker([lat, long], { draggable: false }).addTo(map);
+              }
+        }
+        else {
+            var initialLatLng = [-0.6, 102];
+            map.setView(initialLatLng, 5.5);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
+              map
+            );
+        }
+      });
+  };
+  $scope.checkLocation();
+
+  $scope.getSlh = function(){
+    $http
+    .get("api/slh")
+    .then(function (response) {
+      $scope.slh = response.data.data;
+      console.log($scope.slh);
+    });
+  }
+  $scope.getSlh();
 });

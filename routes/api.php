@@ -6,6 +6,7 @@ use App\Http\Controllers\api\ReportController;
 use App\Http\Controllers\api\PlanController;
 use App\Http\Controllers\api\LocationController;
 use App\Http\Controllers\api\CutController;
+use App\Http\Controllers\api\SlhController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,6 @@ Route::get('/location', [LocationController::class, 'index']);
 Route::get('/cut', [CutController::class, 'index']);
 Route::post('/cut/report', [CutController::class, 'report']);
 Route::post('/cut/location', [CutController::class, 'location']);
+
+Route::get('/slh', [SlhController::class, 'index']);
+Route::post('/slh/file', [SlhController::class, 'file']);
