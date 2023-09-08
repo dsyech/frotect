@@ -28,46 +28,16 @@ def location(update, context):
 
     current_pos = (message.location.latitude, message.location.longitude)
     id = message.from_user.id
-    # getLastLocation
-    url = 'http://10.16.110.100/frotect/api/cut/location'
-    myobj = {
-        'id_telegram': id,
-    }
-    x = requests.post(url, data = myobj)
-    dataSend = json.loads(x.text)
-
-    # cek apakah ada data
-    if dataSend['status'] == 'success':
-        # cek apakah sudah lebih dari 2 menit
-        date = dataSend['data']['created_at']
-        date = datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
-        dateNow = datetime.datetime.now()
-
-        if (dateNow - date).seconds < 120:
-            # jika kurang dari 2 menit, maka tidak perlu mengirim data
-            print('kurang dari 2 menit')
-        else:
-            # jika lebih dari 2 menit, maka kirim data
-            urlSend = 'http://10.16.110.100/frotect/api/cut/location'
-            myobjSend = {
-                'id_telegram': id,
-                'lat': message.location.latitude,
-                'long': message.location.longitude,
-            }
-            xSend = requests.post(urlSend, data = myobjSend)
-            dataSend = json.loads(xSend.text)
-            # print(dataSend)
-    else:
-        # jika belum ada data, maka kirim data
-        urlSend = 'http://10.16.110.100/frotect/api/cut/location'
-        myobjSend = {
+    
+    urlSend = 'http://10.16.110.100/frotect/api/cut/location'
+    myobjSend = {
             'id_telegram': id,
             'lat': message.location.latitude,
             'long': message.location.longitude,
         }
-        xSend = requests.post(urlSend, data = myobjSend)
-        dataSend = json.loads(xSend.text)
-        # print(dataSend)
+    xSend = requests.post(urlSend, data = myobjSend)
+    dataSend = json.loads(xSend.text)
+    print(dataSend)
 
 def main():
     # Create the Updater and pass it your bot's token.

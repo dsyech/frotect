@@ -12,6 +12,7 @@ app.controller("myCtrl", function ($scope, $location, $http) {
   $scope.persen_patroli = 0;
   $scope.persen_wasman = 0;
 
+
   $scope.isActivePath = function (path) {
     return $location.absUrl() != path;
   };
@@ -22,6 +23,10 @@ app.controller("myCtrl", function ($scope, $location, $http) {
     var day = String(date.getDate()).padStart(2, "0");
     return year + "-" + month + "-" + day;
   }
+
+  var today = formatDate(new Date());
+  $scope.start_date = today;
+  $scope.end_date = today;
 
   function getData(date1, date2) {
     $scope.loading = false;

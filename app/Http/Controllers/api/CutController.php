@@ -17,12 +17,12 @@ class CutController extends Controller {
         if ( $witel ) {
             $cuts = Cut::select( '*' )
             ->where( 'witel', '=', $witel )
-            ->whereBetween( 'date', [ $request->input( 'start_date' ), $request->input( 'end_date' ) ] )
+            ->whereBetween( 'date', [  $start_date, $end_date ] )
             ->orderBy( 'witel', 'asc' )
             ->paginate( 10 );
         } else {
             $cuts = Cut::select( '*' )
-            ->whereBetween( 'date', [ $request->input( 'start_date' ), $request->input( 'end_date' ) ] )
+            ->whereBetween( 'date', [ $start_date, $end_date ] )
             ->orderBy( 'witel', 'asc' )
             ->paginate( 10 );
         }
