@@ -97,21 +97,21 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" ng-class="{ 'active': isActivePath('http://10.16.110.100/frotect/cut') }" href="http://10.16.110.100/frotect/cut">
+        <a class="nav-link" ng-class="{ 'collapsed': isActivePath('http://10.16.110.100/frotect/cut') }" href="http://10.16.110.100/frotect/cut">
           <i class="bi bi-x-circle"></i>
           <span>Data Gangguan</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" ng-class="{ 'active': isActivePath('http://10.16.110.100/frotect/slh') }" href="http://10.16.110.100/frotect/slh">
+        <a class="nav-link" ng-class="{ 'collapsed': isActivePath('http://10.16.110.100/frotect/slh') }" href="http://10.16.110.100/frotect/slh">
           <i class="bi bi-graph-up-arrow"></i>
           <span>Span Loss High</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" ng-class="{ 'active': isActivePath('http://10.16.110.100/frotect/technical') }" href="http://10.16.110.100/frotect/technical">
+        <a class="nav-link" ng-class="{ 'collapsed': isActivePath('http://10.16.110.100/frotect/technical') }" href="http://10.16.110.100/frotect/technical">
           <i class="bi bi-file-earmark"></i>
           <span>Data Teknis</span>
         </a>
