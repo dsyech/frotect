@@ -143,7 +143,7 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Konsistensi Laporan</h5>
-            <table class="table table-striped">
+            <table class="table table-striped" style="overflow-x: auto">
               <thead>
                 <tr>
                   <th scope="col">Witel</th>
